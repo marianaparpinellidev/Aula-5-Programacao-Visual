@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
 
         public Form1()
         {
+            //numeros.RemoveAll();
             InitializeComponent();
         }
 
@@ -58,10 +59,10 @@ namespace WindowsFormsApp1
             {
                 numeros.Add(double.Parse(visor.Text));
             }
-            
-            var soma = numeros.Sum();
 
-            visor.Text = soma.ToString();
+            visor.Text = somar().ToString();
+
+            limparLista();
 
         }
 
@@ -115,6 +116,18 @@ namespace WindowsFormsApp1
         private void divisao_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void limparLista()
+        {
+            numeros.Clear();
+        }
+
+        private Double somar()
+        {
+            var soma = numeros.Sum();
+            return soma;
         }
     }
 }
