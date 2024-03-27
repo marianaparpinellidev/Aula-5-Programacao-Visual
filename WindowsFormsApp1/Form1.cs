@@ -12,8 +12,10 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        int num1;
-        int num2;
+
+        public static  List<Double> numeros = new List<Double>();
+        public string operacao;
+
 
         public Form1()
         {
@@ -52,14 +54,22 @@ namespace WindowsFormsApp1
 
         private void igual_Click(object sender, EventArgs e)
         {
+            if (visor.Text != null)
+            {
+                numeros.Add(double.Parse(visor.Text));
+            }
+            
+            var soma = numeros.Sum();
+
+            visor.Text = soma.ToString();
 
         }
 
         private void adicao_Click(object sender, EventArgs e)
         {
-            var num1 = visor.Text;
+            numeros.Add(double.Parse(visor.Text));
+            operacao = "+";
             visor.Text = null;
-            var num2 = visor.Text;
         }
 
         private void dois_Click(object sender, EventArgs e)
