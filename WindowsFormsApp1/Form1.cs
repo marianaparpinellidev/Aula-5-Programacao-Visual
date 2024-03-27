@@ -19,7 +19,6 @@ namespace WindowsFormsApp1
 
         public Form1()
         {
-            //numeros.RemoveAll();
             InitializeComponent();
         }
 
@@ -30,6 +29,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            LimparLista();
             visor.Text = null;
         }
 
@@ -60,15 +60,13 @@ namespace WindowsFormsApp1
                 numeros.Add(double.Parse(visor.Text));
             }
 
-            visor.Text = somar().ToString();
-
-            limparLista();
+            OperacaoMatematica();
 
         }
 
         private void adicao_Click(object sender, EventArgs e)
         {
-            numeros.Add(double.Parse(visor.Text));
+            IncluirNumero();
             operacao = "+";
             visor.Text = null;
         }
@@ -115,19 +113,65 @@ namespace WindowsFormsApp1
 
         private void divisao_Click(object sender, EventArgs e)
         {
+            IncluirNumero();
+            operacao = "/";
+            visor.Text = null;
 
         }
 
 
-        private void limparLista()
+        private void LimparLista()
         {
             numeros.Clear();
         }
 
-        private Double somar()
+        private void Somar()
         {
             var soma = numeros.Sum();
-            return soma;
+            LimparLista();
+
+            visor.Text = soma.ToString();
+        }
+
+        private void IncluirNumero()
+        {
+            numeros.Add(double.Parse(visor.Text));
+        }
+
+        private void Subtrair()
+        {
+            var numero1 = numeros[0];
+            var numero2 = numeros[1];
+
+            var subtracao =  numero1 - numero2;
+
+            visor.Text = subtracao.ToString();
+        }
+
+        private void Dividir()
+        {
+            var numero1 = numeros[0];
+            var numero2 = numeros[1];
+
+            var divisao = numero1 / numero2;
+
+            visor.Text = divisao.ToString();
+        }
+
+        private void OperacaoMatematica()
+        {
+            switch(operacao)
+            {
+                case "+": 
+                    Somar(); break;
+                case "-": 
+                    Subtrair(); break;
+                case "/":
+                    Dividir(); break;
+                case "*":
+                    Somar(); break;
+
+            }
         }
     }
 }
